@@ -33,8 +33,9 @@ public class ItemRepositoryTest extends StudyApplicationTests {
         //있을수도있고 없을수도있다 옵셔널.
         Optional<Item> item = itemRepository.findById(id);
 
-        //낫널이맞다~ 제이유닛이 강의는4고 내꺼는 5라 다름.
+        //제이유닛이 강의는4고 내꺼는 5라 다름.
         //Assert.assertTrue(item.isPresent());
+        //값이 들어가있기때문에 true가 맞다.
         Assertions.assertThat(item.isPresent()).isTrue();
 
 

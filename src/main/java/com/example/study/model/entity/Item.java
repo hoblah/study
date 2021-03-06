@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +18,13 @@ public class Item {
     private String name;
     private Integer price;
     private String content;
+
+    //아이템 입장에선 본인은 1, Orderdetail은 N임.
+    // 1 : N
+    /* User와 같이 오더바이디테일타입의 리스트선언후
+        OrderDetail클래스 안에있는 item변수에 매칭을 시키겠다.
+    */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;
+
 }
