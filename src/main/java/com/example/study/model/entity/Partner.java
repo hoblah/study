@@ -34,4 +34,7 @@ public class Partner {
     private LocalDateTime updatedAt;
     private String updatedBy;
 
+    //외래키추가.
+    private Long categoryId;
+
 }

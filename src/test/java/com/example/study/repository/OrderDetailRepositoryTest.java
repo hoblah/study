@@ -6,6 +6,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 public class OrderDetailRepositoryTest extends StudyApplicationTests {
 
     @Autowired
@@ -15,13 +18,20 @@ public class OrderDetailRepositoryTest extends StudyApplicationTests {
     public void create(){
         OrderDetail orderDetail = new OrderDetail();
 
-        //OrderDetail.setOrderAt(LocalDateTime.now());
+        orderDetail.setStatus("WAITING");
+        // 도착일자는 plusDays(2)-이틀뒤쯤 도착할거같다라는 예상일자를 선언.
+        // 현재일자로부터 이틀이 더 더해진다.
+        orderDetail.setArrivalDate(LocalDateTime.now().plusDays(2));
+        // 수량 1개
+        orderDetail.setQuantity(1);
+        // totalPrice는 BigDecimal타입이기때문에 .valueOf(값) 선언.
+        orderDetail.setTotalPrice(BigDecimal.valueOf(900000));
 
-        //어떤 사람?
-        //orderDetail.setUserId(7L);
+        //orderDetail.setOrderGroupId(1001L); // Long -> OrderGroup //어떠한 장바구니에
+        //orderDetail.setItemId(406L); //어떠한 상품
 
-        //어떤 상품?
-        //orderDetail.setItemId(1L);
+        orderDetail.setCreatedAt(LocalDateTime.now());
+        orderDetail.setCreatedBy("AdminServer");
 
         OrderDetail newOrderDetail =  orderDetailRepository.save(orderDetail);
 

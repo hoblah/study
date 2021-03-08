@@ -29,6 +29,9 @@ public class Item {
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime updatedAt;
-    private String updateBy;
+    private String updatedBy;
+
+    //왜래키 추가.
+    private Long partnerId;
 
 }
