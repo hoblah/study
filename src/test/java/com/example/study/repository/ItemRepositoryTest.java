@@ -28,7 +28,7 @@ public class ItemRepositoryTest extends StudyApplicationTests {
         item.setCreatedAt(LocalDateTime.now());
         item.setCreatedBy("Partner01");
         // 디비의 아이디가 82기때문에 82L적음.
-        item.setPartnerId(82L);
+        //item.setPartnerId(82L); //Long 에서 Partner로 변경
 
         //item을 매개변수로 save시키면 새로운item이 나오고
         Item newItem = itemRepository.save(item);
