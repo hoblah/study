@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity // == table
-@ToString(exclude = {"orderGroup"})
+@ToString(exclude = {"orderGroupList"})
 // @Table 클래스의 이름과 디비의 테이블명이 같다면 자동으로 매칭된다.
 //컬럼명이 디비에는 _가 있어도 자동으로 매칭된다.
 @EntityListeners(AuditingEntityListener.class)

@@ -2,35 +2,49 @@ package com.example.study.controller.api;
 
 import com.example.study.ifs.CrudInterface;
 import com.example.study.model.network.Header;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.study.model.network.request.UserApiRequest;
+import com.example.study.model.network.response.UserApiResponse;
+import com.example.study.service.UserApiLogicService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/user")
-public class UserApiController implements CrudInterface {
+public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
+
+    @Autowired
+    private UserApiLogicService userApiLogicService;
 
     @Override
     @PostMapping("") // /api/user
-    public Header create(){  // C
-        return null;
+    public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request){  // C
+        log.info("{}",request);
+        return userApiLogicService.create(request);
     }
 
+    //@PathVariable(name = "변경이름") 네임을 설정해주므로 특정한 이름을 지어줄수 있다.
+    //    @GetMapping("{ids}")  // /api/user/{id}
+    //    public Header read(@PathVariable(name = "ids") Long id) {
     @Override
     @GetMapping("{id}")  // /api/user/{id}
-    public Header read(Long id) {
-        return null;
+    public Header<UserApiResponse> read(@PathVariable(name = "id") Long id) {
+        log.info("read id: {}",id);
+        return userApiLogicService.read(id);
     }
 
     @Override
-    public Header update() {
-        return null;
+    @PutMapping("") // /api/user
+    public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> request) {
+        return userApiLogicService.update(request);
     }
 
     @Override
-    public Header delete(Long id) {
-        return null;
+    @DeleteMapping("{id}") // /api/user/{id}
+    public Header delete(@PathVariable Long id) {
+        log.info("delete id: {}",id);
+        return userApiLogicService.delete(id);
     }
 
 }
